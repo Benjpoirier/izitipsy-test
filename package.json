@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "dotenv-cli": "^3.1.0",
     "isomorphic-unfetch": "^3.0.0",
     "mongoose": "^4.13.20",
     "next": "^9.1.7",
@@ -17,7 +18,7 @@
     "typescript": "^3.7.5"
   },
   "scripts": {
-    "dev": "next",
+    "dev": "dotenv next",
     "build": "next build",
     "start": "next start"
   },

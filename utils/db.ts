@@ -12,7 +12,7 @@ export default (handler: Handler): Handler => async (req, res) => {
     return handler(req, res);
   }
 
-  mongoose.connect("credentialsToAdd", { useNewUrlParser: true });
+  mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true });
 
   db.on("error", console.error.bind(console, "connection error:"));
 
