@@ -1,5 +1,6 @@
 import { NextPage } from "next";
 import { Ticket } from "../schemas/tickets";
+import fetch from "isomorphic-unfetch";
 interface DashboardProps {
   tickets: Ticket[];
 }
