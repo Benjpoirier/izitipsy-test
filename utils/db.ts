@@ -1,9 +1,15 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
 import { NextApiResponse, NextApiRequest } from "next";
 
-type Handler = (request: NextApiRequest, response: NextApiResponse) => Promise<void>
+type Handler = (
+  request: NextApiRequest,
+  response: NextApiResponse
+) => Promise<void>;
 
-export default (handler: Handler): Handler => async (req, res) => {
+export default (handler: Handler): Handler => async (
+  req,
+  res
+): Promise<void> => {
   const db = mongoose.connection;
 
   console.log("db.readyState", db.readyState);

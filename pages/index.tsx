@@ -1,14 +1,17 @@
-import { NextPage } from "next"
-import { Ticket } from "../schemas/tickets"
-
-const Dashboard: NextPage<{tickets: Ticket[]}> = ({tickets}) => {
-    return <>Dashboard</>
+import { NextPage } from "next";
+import { Ticket } from "../schemas/tickets";
+interface DashboardProps {
+  tickets: Ticket[];
 }
 
-Dashboard.getInitialProps = async () => {
-    const response = await fetch('http://localhost:3000/api/tickets')
-    const tickets = await response.json()
-    return { tickets }
-}
+const Dashboard: NextPage<DashboardProps> = ({ tickets }) => {
+  return <>Dashboard</>;
+};
 
-export default Dashboard
+Dashboard.getInitialProps = async (): Promise<DashboardProps> => {
+  const response = await fetch("http://localhost:3000/api/tickets");
+  const tickets = await response.json();
+  return { tickets };
+};
+
+export default Dashboard;
