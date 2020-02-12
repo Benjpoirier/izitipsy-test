@@ -18,9 +18,9 @@ const Table = ({ dataSource }: { dataSource: Data[] }): ReactElement => {
         {formattedDataSource.map((data, index) => {
           return (
             <tr key={index}>
-              <td>{data.range}</td>
-              <td>{data.numberOfTickets}</td>
-              <td>{data.averageProfit}%</td>
+              <td align="center">{data.range}</td>
+              <td align="center">{data.numberOfTickets}</td>
+              <td align="center">{data.averageProfit}%</td>
             </tr>
           );
         })}
