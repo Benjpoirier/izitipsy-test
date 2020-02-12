@@ -1,17 +1,17 @@
 const GROUP_BY_RANGE = 20;
 
-interface SetOfRange {
+interface SetOfTickets {
   gte: number;
   lte: number;
 }
 
-export const createSetOfRangesFromMaxAmount = (
+export const createSetOfTicketsByRangeFromMaxAmount = (
   maxAmount: number
-): SetOfRange[] => {
+): SetOfTickets[] => {
   const length = maxAmount / GROUP_BY_RANGE;
   return Array.from(
     { length },
-    (_item, index): SetOfRange => {
+    (_item, index): SetOfTickets => {
       return {
         gte: index * GROUP_BY_RANGE + (index === 0 ? 0 : 0.01),
         lte: index * GROUP_BY_RANGE + GROUP_BY_RANGE

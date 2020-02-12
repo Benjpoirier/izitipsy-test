@@ -1,12 +1,12 @@
 import withDb from "../../utils/db";
 import TicketEntity from "../../schemas/tickets";
-import { createSetOfRangesFromMaxAmount } from "../../utils/createAggregateFromMaxAmount";
+import { createSetOfTicketsByRangeFromMaxAmount } from "../../utils/createSetOfTicketsByRangeFromMaxAmount";
 
 export default withDb(async (_req, res) => {
   const { amount: maxAmount } = await TicketEntity.findOne().sort([
     ["amount", -1]
   ]);
-  const aggregate = createSetOfRangesFromMaxAmount(maxAmount);
+  const aggregate = createSetOfTicketsByRangeFromMaxAmount(maxAmount);
   const concatConditions = aggregate.map(({ gte, lte }, index) => ({
     $cond: [
       { $and: [{ $gte: ["$amount", gte] }, { $lte: ["$amount", lte] }] },
