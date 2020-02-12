@@ -6,10 +6,13 @@ export interface FormattedDataSource {
   averageProfit: number;
 }
 
-const computeAverageProfit = (tickets): any => {
+const computeAverageProfit = (
+  tickets: Data["tickets"],
+  indice: number
+): number => {
   const sumOfBenefitPercent = tickets.reduce(
     (accumulator, { amount, tips }) => {
-      const expense = (2.9 / 100) * amount + 0.3;
+      const expense = (indice / 100) * amount + 0.3;
       const benefit = tips - expense;
       const benefitInPercent = (benefit * 100) / amount;
       return (accumulator += benefitInPercent);
@@ -19,12 +22,15 @@ const computeAverageProfit = (tickets): any => {
   return Math.round((sumOfBenefitPercent / tickets.length) * 100) / 100;
 };
 
-export const formatData = (dataSource: Data[]): FormattedDataSource[] => {
+export const formatData = (
+  dataSource: Data[],
+  indice: number
+): FormattedDataSource[] => {
   return dataSource.map((data, index) => {
     const filteredTickets = data.tickets.filter(
       ticket => ticket.amount !== 0 && ticket.tips
     );
-    const averageProfit = computeAverageProfit(filteredTickets);
+    const averageProfit = computeAverageProfit(filteredTickets, indice);
     return {
       range: `< ${(index + 1) * 20}$`,
       numberOfTickets: filteredTickets.length,

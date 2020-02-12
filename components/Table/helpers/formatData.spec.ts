@@ -28,7 +28,7 @@ describe("formatData", () => {
     }
   ];
   it("should compute ouput for given structured data", () => {
-    const data = formatData(mockedData);
+    const data = formatData(mockedData, 2.9);
     expect(data).toEqual([
       {
         range: "< 20$",
