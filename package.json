@@ -26,12 +26,15 @@
     "jest": "^25.1.0",
     "prettier": "^1.19.1",
     "ts-jest": "^25.2.0",
-    "typescript": "^3.7.5"
+    "typescript": "^3.7.5",
+    "type-coverage": "^2.2.0"
   },
   "scripts": {
     "dev": "dotenv next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "jest",
+    "type-coverage": "type-coverage --ignore-files 'dist*/**/*.ts' ./tsconfig.json --strict"
   },
   "author": "",
   "license": "ISC",

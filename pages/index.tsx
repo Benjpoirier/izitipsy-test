@@ -30,7 +30,7 @@ const Dashboard: NextPage<DashboardProps> = ({ data }) => {
 
 Dashboard.getInitialProps = async (): Promise<DashboardProps> => {
   const response = await fetch("http://localhost:3000/api/tickets");
-  const data = await response.json();
+  const data: { tickets: Data[] } = await response.json();
   return { data: data.tickets };
 };
 

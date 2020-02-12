@@ -1,6 +1,7 @@
 import withDb from "../../utils/db";
 import TicketEntity from "../../schemas/tickets";
 import { createSetOfTicketsByRangeFromMaxAmount } from "../../utils/createSetOfTicketsByRangeFromMaxAmount";
+import { Data } from "..";
 
 export default withDb(async (_req, res) => {
   const { amount: maxAmount } = await TicketEntity.findOne().sort([
@@ -14,7 +15,7 @@ export default withDb(async (_req, res) => {
       0
     ]
   }));
-  const tickets = await TicketEntity.aggregate([
+  const tickets: Data[] = await TicketEntity.aggregate([
     {
       $project: {
         range: {
