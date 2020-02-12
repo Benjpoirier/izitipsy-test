@@ -19,12 +19,16 @@ const computeAverageProfit = (tickets): any => {
   return Math.round((sumOfBenefitPercent / tickets.length) * 100) / 100;
 };
 
-export const formatData = (dataSource: Data[]): any[] => {
+export const formatData = (dataSource: Data[]): FormattedDataSource[] => {
   return dataSource.map((data, index) => {
+    const filteredTickets = data.tickets.filter(
+      ticket => ticket.amount !== 0 && ticket.tips
+    );
+    const averageProfit = computeAverageProfit(filteredTickets);
     return {
       range: `< ${(index + 1) * 20}$`,
-      numberOfTickets: data.tickets.length,
-      averageProfit: computeAverageProfit(data.tickets)
+      numberOfTickets: filteredTickets.length,
+      averageProfit: isNaN(averageProfit) ? 0 : averageProfit
     };
   });
 };
